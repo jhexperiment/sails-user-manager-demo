@@ -1,0 +1,111 @@
+<!-- AdminUserModalContent -->
+<form role="form" class="">
+  <label>Attributes:</label>
+  <div class="flex-row flex-wrap">
+    <div class="form-group flex-item col-xs-12 col-sm-3">
+      <input 
+        type="text" 
+        class="form-control" 
+        name="givenName" 
+        placeholder="First Name"
+        value="<%= obj.user.givenName || '' %>"
+        autocomplete="off" 
+      >
+    </div>
+    <div class="form-group flex-item col-xs-12 col-sm-3">
+      <input 
+        type="text" 
+        class="form-control" 
+        name="middleName" 
+        placeholder="Middle Name"
+        value="<%= obj.user.middleName || '' %>"
+        autocomplete="off" 
+      >
+    </div>
+    <div class="form-group flex-item col-xs-12 col-sm-3">
+      <input
+        type="text" 
+        class="form-control" 
+        name="lastName" 
+        placeholder="Last Name"
+        value="<%= obj.user.lastName || '' %>"
+        autocomplete="off" 
+      >
+    </div>
+  </div>
+  
+  <div class="flex-row flex-wrap">
+    <div class="form-group flex-item col-xs-12 col-sm-4">
+      <input 
+        type="text" 
+        class="form-control" 
+        name="username" 
+        placeholder="Username"
+        value="<%= obj.user.username || '' %>"
+        autocomplete="off" 
+      >
+    </div>
+    <div class="form-group flex-item col-xs-12 col-sm-4">
+      <input
+        type="text" 
+        class="form-control" 
+        name="email" 
+        placeholder="Email"
+        value="<%= obj.user.email || '' %>"
+        autocomplete="off" 
+      >
+    </div>
+  </div>
+<% 
+if ( ! obj.user.id ) { 
+%>
+  <div class="flex-row flex-wrap">
+    <div class="form-group flex-item col-xs-12 col-sm-4">
+      <input 
+        type="password" 
+        class="form-control" 
+        name="password" 
+        placeholder="Password"
+        value=""
+        autocomplete="off" 
+      >
+    </div>
+    <div class="form-group flex-item col-xs-12 col-sm-4">
+      <input
+        type="password" 
+        class="form-control" 
+        name="passwordConfirm" 
+        placeholder="Confirm Password"
+        value=""
+        autocomplete="off" 
+      >
+    </div>
+  </div>
+<%
+}
+%>
+  <label>
+    Roles:
+    (
+    <span class="label label-default label-success">Active</span>
+    /
+    <span class="label label-default">Disabled</span>
+    )
+  </label>
+  <h3>
+    <region data-id="AdminUserModalContentRoles" class=""></div>
+  </h3>
+  
+  <label>
+    Permissions:
+    (
+    <span class="label label-default label-success">Active</span>
+    /
+    <span class="label label-default">Disabled</span>
+    )  
+  </label>
+  <h3>
+    <region data-id="AdminUserModalContentPermissions" class=""></div>
+  </h3>
+</form>
+

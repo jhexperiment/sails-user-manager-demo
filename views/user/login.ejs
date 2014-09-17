@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JhEdu</title>
+
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+			    	
+			body {
+				background: url(/images/themes/mooncake/layout/bg/retina_wood.png) #fafafa;
+				color: #444;
+				padding: 0
+			}
+			.center-on-screen {
+			  position: fixed;
+			  top: 50%;
+			  left: 50%;
+			  transform: translate(-50%, -50%);
+			}
+    
+    	.form-signin {
+			    margin: 0 auto;
+			    padding: 15px;
+			    width: 400px;
+			}
+			.form-signin .form-control {
+			    box-sizing: border-box;
+			    font-size: 16px;
+			    height: auto;
+			    padding: 10px;
+			    position: relative;
+			}
+			.form-signin .form-control:focus {
+			    z-index: 2;
+			}
+			.form-signin input[type="text"] {
+			    border-bottom-left-radius: 0;
+			    border-bottom-right-radius: 0;
+			    border-color: #aaa;
+			    border-style: solid solid none;
+			    margin-bottom: -1px;
+			}
+			.form-signin input[type="password"] {
+			    border-color: #aaa;
+			    border-style: none solid solid;
+			    border-top-left-radius: 0;
+			    border-top-right-radius: 0;
+			    margin-bottom: 10px;
+			}
+			.form-signin-heading {
+			    background-color: #fa3a3a;
+			    border-radius: 20px 20px 0 0;
+			    color: #fff;
+			    letter-spacing: 8px;
+			    margin: 0;
+			    padding: 8px 0;
+			    text-align: center;
+			    text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+			    text-transform: uppercase;
+			}
+			.form-signin-heading > span {
+			    font-size: 16px;
+			    letter-spacing: normal;
+			    text-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+			    text-transform: none;
+			}
+			.form-signin > div.body {
+			    background-color: #fff;
+			    border-left: 1px solid #bbb;
+			    border-right: 1px solid #bbb;
+			    padding: 16px 64px;
+			    width: 100%;
+			}
+			.form-signin > div.body > .error-label {
+			    border: 1px solid #fa3a3a;
+			    border-radius: 8px;
+			    color: #fa3a3a;
+			    display: none;
+			    margin-bottom: 10px;
+			    margin-left: -32px;
+			    padding: 4px;
+			    text-align: center;
+			    width: 300px;
+			}
+			.form-signin > div.body > .error-label.display {
+			    display: inline-block;
+			}
+			.form-signin > div.body > div.error-label > button.close {
+			    margin-right: 8px;
+			    margin-top: -2px;
+			}
+			.form-signin > div.footer {
+			    background-color: #fa3a3a;
+			    border-radius: 0 0 44px 44px;
+			    height: 8px;
+			}
+
+    </style>
+  </head>
+
+  <body>
+    
+    	<div class="container">
+			  <form class="form-signin center-on-screen" method="POST">
+			    <h1 class="form-signin-heading text-muted">
+					  Hello
+					  <br>
+					  <span>my name is</span>
+					</h1>
+					<div class="body">
+					  <div class="error-label <?=$sDisplayError?>">
+					    Invalid Username/Password combination.
+					    <button type="button" class="close">&times;</button>
+					  </div>
+			  		<input name="username" type="text" class="form-control" placeholder="Username" required="" autofocus="">
+			  		<input name="password" type="password" class="form-control" placeholder="Password" required="">
+			  		<button class="btn btn-lg btn-primary btn-block" type="submit">
+			  			Sign In
+			  		</button>
+					</div>
+					<div class="footer"></div>
+				</form>
+			</div>
+	  
+	  
+
+		
+  </body>
+</html>

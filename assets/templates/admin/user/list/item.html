@@ -1,0 +1,37 @@
+<tr>
+  <td class="online-status"></td>
+  <td class="hidden-xs hidden-sm"><%= model.attributes.id %></td>
+  <td class="name"><%= model.attributes.fullName %></td>
+  <td class="hidden-xs"><%= model.attributes.email %></td>
+  <td data-region data-id="AdminUserListItemRoles" class="roles hidden-xs"></td>
+  <td class="hidden-xs">
+<% 
+_.each(model.attributes.permissions, function(permission) {
+%>
+      <span class="badge"><%= permission.name %></span>
+<%
+});
+%>
+  </td>
+  <td class="actions">
+    <div class="btn-group">
+      <a href="#admin/user/edit/<%= model.attributes.id %>" type="button" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-pencil"></span>
+        Edit
+      </a>
+      <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li>
+          <a href="#admin/user/edit/<%= model.attributes.id %>">
+            <span class="glyphicon glyphicon-pencil"></span>
+            Edit
+          </a>
+        </li>
+        <li><a href="#admin/user/delete/<%= model.attributes.id %>">Delete</a></li>
+      </ul>
+    </div>
+  </td>
+</tr>

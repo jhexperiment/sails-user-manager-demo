@@ -1,0 +1,28 @@
+<section class="table-responsive">
+  <h3>
+    <%= data.title || title %>
+    <a href="#admin/user/create" class="btn btn-default pull-right">
+      <span class="glyphicon glyphicon-plus"></span>
+      New
+    </a>
+  </h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="online-status"></th>
+        <th class="hidden-xs hidden-sm">ID</th>
+        <th>Name</th>
+        <th class="hidden-xs">Email</th>
+        <th class="hidden-xs">Roles</th>
+        <th class="hidden-xs">Privilages</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody data-region data-id="TableBody">
+      
+    </tbody>
+  </table>
+  <region data-id="AdminUserListPaginator"></region>
+</section>
+
+<region data-id="AdminUserListEditModal"></region>

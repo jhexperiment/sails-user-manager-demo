@@ -1,0 +1,18 @@
+
+<section class=" flex-item <%= size %> ">
+  <div class="panel panel-default <%= classes %> ">
+<%
+if ( ! _.isEmpty(obj.title) ) {
+%>
+    <header class="panel-heading">
+      <h3 class="panel-title"><%= obj.title %></h3>
+    </header>
+<%
+}
+%>
+    <section data-region data-id="PanelContent" class="panel-body">
+      
+    </section>
+    
+  </div>
+</section>

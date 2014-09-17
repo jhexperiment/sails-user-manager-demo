@@ -1,0 +1,39 @@
+<div class="container">
+    <h3>Users</h3>
+    <a href="/signup" class="btn btn-sm btn-default">Add User</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+<%
+_.each(users, function(user) {
+%>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-primary">Show</a>
+                </td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                </td>
+                <td>
+                    <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+<%
+});
+%>
+        </tbody>
+        
+    </table>
+</div>

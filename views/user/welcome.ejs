@@ -1,0 +1,17 @@
+<h1>Welcome! You have signed up successfully!</h1>
+
+<a href="/">Back to home page</a>
+<a href="/logout">Log out</a>
+
+
+<h3 class="container">You're looking at: <code><%= view.pathFromApp + '.' +view.ext %></code></h3>
+<% if (typeof data === 'undefined') { %>
+  <h1><code>data</code> was not defined in the view locals.</h1>
+<%
+}
+else { %>
+  <h1><code>data</code> in the view locals contains the following:</h1>
+  <code>
+    <%- JSON.stringify(data) %>
+  </code>
+<% } %>

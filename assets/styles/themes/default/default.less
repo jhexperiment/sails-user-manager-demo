@@ -1,0 +1,217 @@
+@mooncakeDir: "/images/themes/mooncake";
+@imageDir: @mooncakeDir;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body
+{
+	background: url("@{imageDir}/layout/bg/retina_wood.png") #fafafa;
+	color: #444;
+	padding: 70px 0px 0px 0px;
+	
+	> .container-fluid {
+	  margin-bottom: 40px;
+	}
+}
+
+
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: 40px;
+  background-color: #f5f5f5;
+}
+
+
+region {
+  display: block;
+}
+
+
+region[data-id=DashboardTopRow] {
+  //align-items: stretch;
+}
+
+region[data-id=AdminUserModalContentRolesCollection] {
+  padding: @grid-gutter-width / 2;
+  width: 100%;
+  display: inline-block;
+  
+  
+  > .label {
+    cursor: pointer;
+    margin: @grid-gutter-width / 3;
+    display: inline-block;
+  
+    
+    > .glyphicon {
+      cursor: pointer;
+    }
+  }
+}
+
+form[data-template-id=AdminUserModalContent] {
+  h3 {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+
+region[data-id=AdminUserModalContentPermissions] {
+  padding: @grid-gutter-width / 2;
+  display: block;
+  
+}
+
+div[data-template-id=AdminUserList] {
+  table {
+    margin-bottom: 0px;
+  }
+  ul.pagination {
+    li {
+      cursor: pointer;
+    }
+  }
+}
+
+tr[data-template-id=AdminUserListItem] {
+  td.roles {
+    span.badge {
+      margin: 0px 2px;
+    }
+  }
+  td.actions {
+    min-width: 90px;
+    text-align: right;
+  }
+}
+
+
+section.panel-body {
+  &.loading {
+    position: relative;
+    
+    &:before {
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      position: absolute;
+      display: inline-block;
+      
+      //background: #000;
+    }
+    
+    &:after {
+      background: url("/images/themes/mooncake/preloaders/1.gif") no-repeat scroll 0 0 transparent;
+      display: inline-block;
+      height: 100%;
+      width: 100%;
+      left: 50%;
+      margin-left: -5px;
+      margin-top: -5px;
+      position: absolute;
+      top: 50%;
+    }
+  }
+}
+
+
+.form-group {
+  label.error {
+    color: @state-danger-text;
+  }
+}
+
+.label {
+  
+  position: relative;
+  
+  &.label-close {
+    padding-right: 26px;
+  }
+  
+  &.new {
+    padding-right: 0.6em;
+    .close {
+      display: none;
+    }
+  }
+  
+  &.existing {
+    padding-right: 0.6em;
+    .close {
+      display: none;
+    }
+  }
+  
+  .close {
+    top: 1px;
+    right: 8px;
+    position: absolute;
+    color: inherit;
+  }
+}
+
+
+@media (max-width: @screen-xs-min) {
+  body {
+    padding: 54px 0px 0px 0px;
+    
+    > .container-fluid {
+      padding: 0px;
+    }
+  }
+  
+  
+  
+  region[data-id=AdminUserScreen] {
+    
+    section[data-template-id=WidgetPanel] {
+      padding: 0px;  
+      
+      .panel {
+        border-radius: 0px;
+      }
+    }
+    
+  }
+  
+  .modal-dialog {
+    margin: 0px;
+    height: 100%;
+    
+    .modal-content {
+      padding: 65px 0px;
+      height: 100%;
+      border-radius: 0px;
+      
+      .modal-header {
+        width: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
+        display: inline-block;
+      }  
+      .modal-body {
+        height: 100%;
+        overflow-y: auto;
+      }
+      .modal-footer {
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        display: inline-block;
+      }  
+    }
+  }
+}
+

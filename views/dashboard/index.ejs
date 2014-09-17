@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JhEdu</title>
+
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Language" content="en">
+    
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+
+    
+    <!--  
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage 
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+        
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+            
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    -->
+    
+    
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <!--STYLES END-->
+    
+    <styles>
+      
+    </styles>
+  </head>
+
+  <body>
+  
+    <!-- shim shimmity shim shiru -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    
+    <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
+        that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+        
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different template engine (handlebars, jade, dust, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+    <!--TEMPLATES-->
+    <script type="text/javascript" src="/jst.js"></script>
+    <!--TEMPLATES END-->
+
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can 
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+      
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+          
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.14/require.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    -->
+    
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/mast.withDependencies.dev.js"></script>
+    <script src="/js/dependencies/sails.io.backbone.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/jquery.validate.js"></script>
+    <!--SCRIPTS END-->
+    <script>
+      jQuery.validator.methods.email = function (value, element, params) {
+        //var re = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.(?:[A-Z]{2}|com|org|net|edu|gov|mil|biz|info|mobi|name|aero|asia|jobs|museum)$/;
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(value);
+      };
+    </script>
+    
+    
+    <!--
+		<script src="/jsStuff/index.js"></script>
+		-->
+		<script>
+    // Modify JST templates to eliminate the nasty parts of the file path
+    _.each(JST, function (fn, path) {
+    	var parts = path.split('/');
+    	var id = [];
+    	if (parts.length >= 3) {
+    		
+    		// shift off first two
+    		parts.splice(0,2);
+    		
+    		// grab the file name from the end
+    		var filename = parts.pop();
+    		
+    		// prepend directories
+    		if (parts.length > 0) {
+    			_.each(parts, function(part) {
+    				part = part.charAt(0).toUpperCase() + part.slice(1);
+    				id.push(part);
+    			});
+    		}
+    		
+    		// append filename without extension
+    		filename = filename.split('.')[0];
+    		filename = filename.charAt(0).toUpperCase() + filename.slice(1);
+    		id.push(filename);
+    		
+    	} 
+    	else {
+    		throw "Error loading templates.";
+    	}
+    	
+    	id = id.join('');
+    	
+    	Mast.templates[id] = fn;
+    });
+    </script>
+    
+    <div class="container-fluid">
+      <region data-id="PageHeader" template="Header"></region>
+    
+      <region data-id="PageBody"></region>
+      
+      <region data-id="PageFooter" template="Footer"></region>
+    </div>
+	  
+	  <!--MODELS-->
+  <script src="/models/WidgetLabel.js"></script>
+  <script src="/models/WidgetPanel.js"></script>
+  <!--MODELS END-->
+  
+  <!--SAILSMODELS-->
+  <script src="/sails-models.js"></script>
+  <!--SAILSMODELS END-->
+    
+		<!--COMPONENTS-->
+<script src="/components/AdminUserList.js"></script>
+<script src="/components/AdminUserListItem.js"></script>
+<script src="/components/AdminUserModal.js"></script>
+<script src="/components/AdminUserModalContent.js"></script>
+<script src="/components/AdminUserModalContentRoles.js"></script>
+<script src="/components/AdminUserScreen.js"></script>
+<script src="/components/DashboardScreen.js"></script>
+<script src="/components/Header.js"></script>
+<script src="/components/Nav.js"></script>
+<script src="/components/NavDropdown.js"></script>
+<script src="/components/WidgetAttributeStatus.js"></script>
+<script src="/components/WidgetLabel.js"></script>
+<script src="/components/WidgetModal.js"></script>
+<script src="/components/WidgetPaginator.js"></script>
+<script src="/components/WidgetPanel.js"></script>
+<!--COMPONENTS END-->
+    <script>
+      Mast.session = {};
+  	  Mast.raise();
+    </script>
+    
+    <script>
+      
+      io.socket.on('user', function(message) {
+        console.log("User message recieved :: ");
+        console.log(message);
+      });
+      io.socket.on('role', function(message) {
+        console.log("Role message recieved :: ");
+        console.log(message);
+      });
+      //alert(window.screen.availHeight + 'x' + window.screen.availWidth);
+      
+    </script>
+		
+  </body>
+</html>

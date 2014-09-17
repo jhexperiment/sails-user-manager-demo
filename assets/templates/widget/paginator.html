@@ -1,0 +1,36 @@
+<%
+var start = obj.skip + 1;
+var curPage = (obj.skip < obj.limit) ? 1 : Math.ceil(obj.skip / obj.limit);
+var pages = obj.total / obj.limit;
+pages = Math.ceil(pages);
+
+%>
+<ul class="pagination pull-right">
+  <li class="prev <%= (curPage === 1) ? 'disabled' : '' %>">
+    <span>
+      &laquo;
+      <% if (curPage === 1) { %> <span class="sr-only">(first)</span> <% } %>
+    </span>
+  </li>
+<%
+for ( var i = 1; i <= pages; i++) {
+  var disabled = '';
+  var active = (i === curPage) ? 'active' : '';
+  
+%>
+  <li data-page="<%= i %>" class="<%= disabled %> <%= active %>">
+    <span>
+      <% if (curPage === i) { %> <span class="sr-only">(current)</span> <% } %>
+      <%= i %>
+    </span>
+  </li>
+<%
+}
+%>
+  <li class="next <%= (curPage === pages) ? 'disabled' : '' %>">
+    <span>
+      <% if (curPage === pages) { %> <span class="sr-only">(first)</span> <% } %>
+      &raquo;
+    </span>
+  </li>
+</ul>

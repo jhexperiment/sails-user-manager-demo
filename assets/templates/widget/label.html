@@ -1,0 +1,13 @@
+<span 
+  data-id="<%= obj.id ? obj.id : '' %>"
+  class="label label-default <%= obj.classes ? obj.classes : '' %>"
+>
+  <%= name %> 
+<%
+if (obj.closeButton) {
+%>
+  <region template="WidgetButtonClose"></region>
+<%
+}
+%>
+</span>
