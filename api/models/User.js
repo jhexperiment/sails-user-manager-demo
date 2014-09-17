@@ -50,7 +50,10 @@ module.exports = {
       type: 'boolean'
     },
     
-    fullName: function() {
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.password;
+      
       var name = [];
       if ( ! _.isEmpty(this.givenName) ) {
         name.push(this.givenName);
@@ -62,14 +65,7 @@ module.exports = {
         name.push(this.lastName);
       }
       
-      return name.join(" ");
-    },
-    
-    toJSON: function() {
-      var obj = this.toObject();
-      delete obj.password;
-      
-      obj.fullName = this.fullName();
+      obj.fullName = name.join(" ");
       
       return obj;
     },

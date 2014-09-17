@@ -15,14 +15,21 @@ Mast.define('AdminUserModalContentRoles', function() {
       if ($label.hasClass(this.stateClasses.active)) {
         // active role label
         $label.removeClass(component.stateClasses.active);
-        // remove role from user
-        this.updateUserRole(this.userId, roleId, 'delete');
+        
+        if ( this.userId ) {
+          // remove role from user
+          this.updateUserRole(this.userId, roleId, 'delete');  
+        }
+        
       }
       else {
         // active role label
         $label.addClass(this.stateClasses.active);
-        // add role to user
-        this.updateUserRole(this.userId, roleId, 'put');
+        
+        if ( this.userId ) {
+          // add role to user
+          this.updateUserRole(this.userId, roleId, 'put');
+        }
       }
       
     },
@@ -197,7 +204,6 @@ Mast.define('AdminUserModalContentRoles', function() {
 				intoRegion: this.AdminUserModalContentRolesCollection
 			});
       
-			
 			if (this.userId) {
 			  // render 'reset' button
 				this.AdminUserModalContentRolesCollection.append(

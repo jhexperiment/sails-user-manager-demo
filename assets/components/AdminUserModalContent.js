@@ -74,9 +74,8 @@ Mast.define('AdminUserModalContent', function() {
 		  }
 		  
 		  if ( ! this.user.permissions || this.user.permissions.length === 0 ) {
-		    throw new Error('Component AdminUserModalContent::listenForUserChanges - missing user permissions.');
+		    return;
 		  }
-		  
 		  
 		  io.socket.on('user', function(message) {
         var userId = component.user.id;
@@ -107,10 +106,6 @@ Mast.define('AdminUserModalContent', function() {
 		    throw new Error('Component AdminUserModalContent::renderPermissions - missing user.');
 		  }
 		  
-		  if ( ! this.user.permissions || this.user.permissions.length === 0 ) {
-		    throw new Error('Component AdminUserModalContent::renderPermissions - missing user roles.');
-		  }
-		  
 		  // render permissions
       var permissions = new Mast.Collection(this.user.permissions);  
       this.renderCollection(permissions, {
@@ -124,10 +119,6 @@ Mast.define('AdminUserModalContent', function() {
 		  
 		  if ( ! this.user ) {
 		    throw new Error('Component AdminUserModalContent::renderRoles - missing user.');
-		  }
-		  
-		  if ( ! this.user.roles || this.user.roles.length === 0 ) {
-		    throw new Error('Component AdminUserModalContent::renderRoles - missing user roles.');
 		  }
 		  
 		  // convert roles to collection of label widgets
