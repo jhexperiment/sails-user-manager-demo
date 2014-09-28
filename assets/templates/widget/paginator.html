@@ -34,3 +34,23 @@ for ( var i = 1; i <= pages; i++) {
     </span>
   </li>
 </ul>
+
+<%
+var limits = [ 10, 20, 50, 100 ];
+%>
+<span class="limit-selector pull-right">
+  <div class="selector-container">
+    <select>
+<%
+_.each(limits, function(limit) {
+  var selected = obj.limit == limit ? 'selected="selected"' : '';
+%>
+      <option <%= selected %> >
+        <%= limit %>
+      </option>
+<%
+});
+%>
+    </select>
+  </div>
+</span>

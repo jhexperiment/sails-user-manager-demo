@@ -114,6 +114,49 @@ module.exports = {
     
     return;
   },
+  
+  assignPermission: function(user, permission, next) {
+    if ( ! user ) {
+      throw new Error('Model::User::assignPermission - Missing user.');
+    }
+    if ( ! permission ) {
+      throw new Error('Model::User::assignPermission - Missing permission.');
+    }
+    
+    user.permissions.add(permission.id);
+    user.save(function(err, user) {
+      
+      User.publishUpdate(user.id, {
+        permission: {
+          id: permission.id,
+          name: permission.name,
+          verb: 'assigned'
+        }
+      });
+    });
+    
+    return;
+  },
+  removePermission: function(user, permission, next) {
+    if ( ! user ) {
+      throw new Error('Model::User::removePermission - Missing user.');
+    }
+    if ( ! permission ) {
+      throw new Error('Model::User::removePermission - Missing permission.');
+    }
+    
+    user.permissions.remove(permission.id);
+    user.save(function(err, user) {
+      User.publishUpdate(user.id, {
+        permission: {
+          id: permission.id,
+          verb: 'removed'
+        }
+      });
+    });
+    
+    return;
+  },
     
   beforeCreate: function(attrs, next) {
     if ( ! attrs ) {

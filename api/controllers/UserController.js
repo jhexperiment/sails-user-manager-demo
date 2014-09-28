@@ -109,8 +109,9 @@ module.exports = {
     });
   },
   count: function(req, res) {
+    var options = req.params.all();
     // grab user count
-    User.count(function(err, num) {
+    User.count(options, function(err, num) {
       res.json({
         err: err, 
         count: num
@@ -182,6 +183,67 @@ module.exports = {
     
     
   },
+	
+	assignPermission: function(req, res) {
+    var userId = req.param('userId');
+    var permissionId = req.param('permissionId');
+    if ( ! userId ) {
+      throw new Error('UserController::assignPermission - Missing user id.');
+    }
+    if ( ! permissionId ) {
+      throw new Error('UserController::assignPermission - Missing permission id.');
+    }
+    
+    // grab user
+    User.findOneById(userId, {}, function(err, user) {
+      if (err) {
+        return res.negotiate(err);
+      }
+      
+      // grab permission
+      Permission.findOneById(permissionId, {}, function(err, permission) {
+        if (err) {
+          return res.negotiate(err);
+        }
+        
+        // assing role to user
+        User.assignPermission(user, permission, function() {
+          res.json({ msg: 'Permission assigned.'});
+        });
+      });
+      
+    });
+  },
+	removePermission: function(req, res) {
+	  var userId = req.param('userId');
+    var permissionId = req.param('permissionId');
+    if ( ! userId ) {
+      throw new Error('UserController::removePermission - Missing user id.');
+    }
+    if ( ! permissionId ) {
+      throw new Error('UserController::removePermission - Missing permission id.');
+    }
+    //grab user
+	  User.findOneById(userId, {}, function(err, user) {
+      if (err) {
+        return res.negotiate(err);
+      }
+      // grab permission
+      Permission.findOneById(permissionId, {}, function(err, permission) {
+        if (err) {
+          return res.negotiate(err);
+        }
+        // remove permission from user
+        User.removePermission(user, permission, function() {
+          res.json({ msg: 'Permission removed.'});
+        });
+        
+      });
+      
+    });
+  },
+	
+	
 	getIepStudents: function(req, res) {
 	  User.findWithRoles(['Student', 'IEP Member'], function(users) {
 	    res.json(users);

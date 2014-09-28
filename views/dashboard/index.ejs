@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Sails User Manager Demo</title>
+    <title>JhEdu</title>
 
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,6 +37,8 @@
     
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/select2/select2-bootstrap.css">
+    <link rel="stylesheet" href="/styles/select2/select2.css">
     <!--STYLES END-->
     
     <styles>
@@ -110,6 +112,7 @@
     <script src="/js/dependencies/sails.io.backbone.js"></script>
     <script src="/js/bootstrap.js"></script>
     <script src="/js/jquery.validate.js"></script>
+    <script src="/js/select2.js"></script>
     <!--SCRIPTS END-->
     <script>
       jQuery.validator.methods.email = function (value, element, params) {
@@ -169,8 +172,8 @@
     </div>
 	  
 	  <!--MODELS-->
-  <script src="/models/WidgetLabel.js"></script>
-  <script src="/models/WidgetPanel.js"></script>
+  <script src="/models/widget/label.js"></script>
+  <script src="/models/widget/panel.js"></script>
   <!--MODELS END-->
   
   <!--SAILSMODELS-->
@@ -178,21 +181,32 @@
   <!--SAILSMODELS END-->
     
 		<!--COMPONENTS-->
-<script src="/components/AdminUserList.js"></script>
-<script src="/components/AdminUserListItem.js"></script>
-<script src="/components/AdminUserModal.js"></script>
-<script src="/components/AdminUserModalContent.js"></script>
-<script src="/components/AdminUserModalContentRoles.js"></script>
-<script src="/components/AdminUserScreen.js"></script>
-<script src="/components/DashboardScreen.js"></script>
-<script src="/components/Header.js"></script>
-<script src="/components/Nav.js"></script>
-<script src="/components/NavDropdown.js"></script>
-<script src="/components/WidgetAttributeStatus.js"></script>
-<script src="/components/WidgetLabel.js"></script>
-<script src="/components/WidgetModal.js"></script>
-<script src="/components/WidgetPaginator.js"></script>
-<script src="/components/WidgetPanel.js"></script>
+<script src="/components/admin/permission/list.js"></script>
+<script src="/components/admin/permission/list/item.js"></script>
+<script src="/components/admin/permission/modal.js"></script>
+<script src="/components/admin/permission/modal/content.js"></script>
+<script src="/components/admin/permission/screen.js"></script>
+<script src="/components/admin/role/list.js"></script>
+<script src="/components/admin/role/list/item.js"></script>
+<script src="/components/admin/role/modal.js"></script>
+<script src="/components/admin/role/modal/content.js"></script>
+<script src="/components/admin/role/screen.js"></script>
+<script src="/components/admin/user/list.js"></script>
+<script src="/components/admin/user/list/item.js"></script>
+<script src="/components/admin/user/modal.js"></script>
+<script src="/components/admin/user/modal/content.js"></script>
+<script src="/components/admin/user/modal/content/permissions.js"></script>
+<script src="/components/admin/user/modal/content/roles.js"></script>
+<script src="/components/admin/user/screen.js"></script>
+<script src="/components/dashboard/screen.js"></script>
+<script src="/components/header.js"></script>
+<script src="/components/nav.js"></script>
+<script src="/components/nav/dropdown.js"></script>
+<script src="/components/widget/attributeStatus.js"></script>
+<script src="/components/widget/label.js"></script>
+<script src="/components/widget/modal.js"></script>
+<script src="/components/widget/paginator.js"></script>
+<script src="/components/widget/panel.js"></script>
 <!--COMPONENTS END-->
     <script>
       Mast.session = {};
@@ -209,6 +223,11 @@
         console.log("Role message recieved :: ");
         console.log(message);
       });
+      io.socket.on('permission', function(message) {
+        console.log("Permission message recieved :: ");
+        console.log(message);
+      });
+      //alert(window.screen.availHeight + 'x' + window.screen.availWidth);
       
     </script>
 		

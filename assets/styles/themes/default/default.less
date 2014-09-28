@@ -1,3 +1,5 @@
+@mooncakeDir: "/images/themes/mooncake";
+@imageDir: @mooncakeDir;
 
 html {
   position: relative;
@@ -6,6 +8,7 @@ html {
 
 body
 {
+	background: url("@{imageDir}/layout/bg/retina_wood.png") #fafafa;
 	color: #444;
 	padding: 70px 0px 0px 0px;
 	
@@ -25,6 +28,34 @@ body
   background-color: #f5f5f5;
 }
 
+.loading {
+  position: relative;
+  
+  &:before {
+    z-index: 1;
+    content: "";
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: inline-block;
+  }
+  
+  &:after {
+    content: "";
+    background: url("/images/themes/mooncake/preloaders/1.gif") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -5px;
+    position: absolute;
+    top: 50%;
+  }
+}
+
 
 region {
   display: block;
@@ -40,6 +71,22 @@ region[data-id=AdminUserModalContentRolesCollection] {
   width: 100%;
   display: inline-block;
   
+  > .label {
+    cursor: pointer;
+    margin: @grid-gutter-width / 3;
+    display: inline-block;
+  
+    
+    > .glyphicon {
+      cursor: pointer;
+    }
+  }
+}
+
+region[data-id=AdminUserModalContentPermissionsCollection] {
+  padding: @grid-gutter-width / 2;
+  width: 100%;
+  display: inline-block;
   
   > .label {
     cursor: pointer;
@@ -57,9 +104,10 @@ form[data-template-id=AdminUserModalContent] {
   h3 {
     margin: 0px;
     padding: 0px;
+    
+    
   }
 }
-
 
 region[data-id=AdminUserModalContentPermissions] {
   padding: @grid-gutter-width / 2;
@@ -68,12 +116,117 @@ region[data-id=AdminUserModalContentPermissions] {
 }
 
 div[data-template-id=AdminUserList] {
-  table {
-    margin-bottom: 0px;
+  section.table-responsive {
+    h3 {
+      line-height: 34px;
+      
+      .search-container {
+        width: 300px;
+        position: relative;
+        
+        button.close {
+          left: 180px;
+          top: 3px;
+          position: absolute;
+        }
+        
+        input[name=search] {
+          padding-right: 25px;
+          width: 200px;
+        }
+        
+        button.search {
+          margin: 0px 16px 0px 4px;
+        }  
+        
+        
+      }
+      
+    }
+  }
+  
+  div.table-container {
+    width: 100%;
+    min-height: 510px;
+    position: relative;
+    display: inline-block;
+    
+    &.loading {
+      &:before {
+        background: #000;
+        opacity: 0.2;
+      }
+    }
+    
+    table {
+      margin-bottom: 0px;
+      thead {
+        th {
+          &.name {
+          }
+          &.email {
+          }
+          
+          
+          span.glyphicon {
+            display: none;
+          }
+          
+          &.sortable {
+            cursor: pointer;
+          }
+          &.sorting {
+            &.asc {
+              span.glyphicon-chevron-down {
+                display: inline-block;
+              }
+            }
+            
+            &.desc {
+              span.glyphicon-chevron-up {
+                display: inline-block;
+              }
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          &:last-child {
+            td {
+              border-bottom: 2px solid @table-border-color;
+            }
+          }
+        }
+      }
+      
+      tfoot {
+        tr.hide {
+          display: none;
+        }
+        tr.pagination-info {
+          th {
+            text-align: right;
+          }
+        }
+      }
+    }
   }
   ul.pagination {
+    margin: 0px 20px 20px 20px;
+    
     li {
       cursor: pointer;
+    }
+  }
+  span.limit-selector {
+    margin: 0px 0px 20px 0px;
+    display: inline-block;
+    
+    div.selector-container {
+      height: 34px;
+      display: table-cell;
+      vertical-align: middle;
     }
   }
 }
@@ -84,9 +237,303 @@ tr[data-template-id=AdminUserListItem] {
       margin: 0px 2px;
     }
   }
+  td.permissions {
+    span.badge {
+      margin: 0px 2px;
+    }
+  }
   td.actions {
-    min-width: 90px;
     text-align: right;
+    
+    div.btn-group {
+      min-width: 90px;
+    }
+  }
+}
+
+
+form[data-template-id=AdminRoleModalContent] {
+  h3 {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+div[data-template-id=AdminRoleList] {
+  section.table-responsive {
+    h3 {
+      line-height: 34px;
+      
+      .search-container {
+        width: 300px;
+        position: relative;
+        
+        button.close {
+          left: 180px;
+          top: 3px;
+          position: absolute;
+        }
+        
+        input[name=search] {
+          padding-right: 25px;
+          width: 200px;
+        }
+        
+        button.search {
+          margin: 0px 16px 0px 4px;
+        }  
+        
+        
+      }
+      
+    }
+  }
+  
+  div.table-container {
+    width: 100%;
+    min-height: 510px;
+    position: relative;
+    display: inline-block;
+    
+    &.loading {
+      &:before {
+        background: #000;
+        opacity: 0.2;
+      }
+    }
+    
+    table {
+      margin-bottom: 0px;
+      thead {
+        th {
+          &.name {
+            padding-right: 60px;
+          }
+          
+          
+          span.glyphicon {
+            display: none;
+          }
+          
+          &.sortable {
+            cursor: pointer;
+          }
+          &.sorting {
+            &.asc {
+              span.glyphicon-chevron-down {
+                display: inline-block;
+              }
+            }
+            
+            &.desc {
+              span.glyphicon-chevron-up {
+                display: inline-block;
+              }
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          &:last-child {
+            td {
+              border-bottom: 2px solid @table-border-color;
+            }
+          }
+        }
+      }
+      
+      tfoot {
+        tr.hide {
+          display: none;
+        }
+        tr.pagination-info {
+          th {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+  ul.pagination {
+    margin: 0px 20px 20px 20px;
+    
+    li {
+      cursor: pointer;
+    }
+  }
+  span.limit-selector {
+    margin: 0px 0px 20px 0px;
+    display: inline-block;
+    
+    div.selector-container {
+      height: 34px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}
+
+tr[data-template-id=AdminRoleListItem] {
+  td.roles {
+    span.badge {
+      margin: 0px 2px;
+    }
+  }
+  td.permissions {
+    span.badge {
+      margin: 0px 2px;
+    }
+  }
+  td.actions {
+    text-align: right;
+    
+    div.btn-group {
+      min-width: 90px;
+    }
+  }
+}
+
+
+form[data-template-id=AdminPermissionModalContent] {
+  h3 {
+    margin: 0px;
+    padding: 0px;
+  }
+}
+
+div[data-template-id=AdminPermissionList] {
+  section.table-responsive {
+    h3 {
+      line-height: 34px;
+      
+      .search-container {
+        width: 300px;
+        position: relative;
+        
+        button.close {
+          left: 180px;
+          top: 3px;
+          position: absolute;
+        }
+        
+        input[name=search] {
+          padding-right: 25px;
+          width: 200px;
+        }
+        
+        button.search {
+          margin: 0px 16px 0px 4px;
+        }  
+        
+        
+      }
+      
+    }
+  }
+  
+  div.table-container {
+    width: 100%;
+    min-height: 510px;
+    position: relative;
+    display: inline-block;
+    
+    &.loading {
+      &:before {
+        background: #000;
+        opacity: 0.2;
+      }
+    }
+    
+    table {
+      margin-bottom: 0px;
+      thead {
+        th {
+          &.name {
+            padding-right: 60px;
+          }
+          
+          
+          span.glyphicon {
+            display: none;
+          }
+          
+          &.sortable {
+            cursor: pointer;
+          }
+          &.sorting {
+            &.asc {
+              span.glyphicon-chevron-down {
+                display: inline-block;
+              }
+            }
+            
+            &.desc {
+              span.glyphicon-chevron-up {
+                display: inline-block;
+              }
+            }
+          }
+        }
+      }
+      tbody {
+        tr {
+          &:last-child {
+            td {
+              border-bottom: 2px solid @table-border-color;
+            }
+          }
+        }
+      }
+      
+      tfoot {
+        tr.hide {
+          display: none;
+        }
+        tr.pagination-info {
+          th {
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+  ul.pagination {
+    margin: 0px 20px 20px 20px;
+    
+    li {
+      cursor: pointer;
+    }
+  }
+  span.limit-selector {
+    margin: 0px 0px 20px 0px;
+    display: inline-block;
+    
+    div.selector-container {
+      height: 34px;
+      display: table-cell;
+      vertical-align: middle;
+    }
+  }
+}
+
+tr[data-template-id=AdminPermissionListItem] {
+  td.roles {
+    span.badge {
+      margin: 0px 2px;
+    }
+  }
+  td.permissions {
+    span.badge {
+      margin: 0px 2px;
+    }
+  }
+  td.actions {
+    text-align: right;
+    
+    div.btn-group {
+      min-width: 90px;
+    }
   }
 }
 
@@ -107,6 +554,7 @@ section.panel-body {
     }
     
     &:after {
+      background: url("/images/themes/mooncake/preloaders/1.gif") no-repeat scroll 0 0 transparent;
       display: inline-block;
       height: 100%;
       width: 100%;
@@ -211,3 +659,84 @@ section.panel-body {
   }
 }
 
+@modal-bg:                    #fff;
+@modal-body-padding:          15px;
+@modal-heading-padding:       10px 15px;
+@modal-footer-padding:        @modal-heading-padding;
+@modal-border-radius:         @border-radius-base;
+
+//** Border color for elements within modals
+@modal-inner-border:          #ddd;
+@modal-footer-bg:             #f5f5f5;
+
+@modal-default-text:          @gray-dark;
+@modal-default-border:        #ddd;
+@modal-default-heading-bg:    #f5f5f5;
+
+@modal-primary-text:          #fff;
+@modal-primary-border:        @brand-primary;
+@modal-primary-heading-bg:    @brand-primary;
+
+@modal-success-text:          @state-success-text;
+@modal-success-border:        @state-success-border;
+@modal-success-heading-bg:    @state-success-bg;
+
+@modal-info-text:             @state-info-text;
+@modal-info-border:           @state-info-border;
+@modal-info-heading-bg:       @state-info-bg;
+
+@modal-warning-text:          @state-warning-text;
+@modal-warning-border:        @state-warning-border;
+@modal-warning-heading-bg:    @state-warning-bg;
+
+@modal-danger-text:           @state-danger-text;
+@modal-danger-border:         @state-danger-border;
+@modal-danger-heading-bg:     @state-danger-bg;
+
+
+.modal-variant(@border; @heading-text-color; @heading-bg-color; @heading-border) {
+  border-color: @border;
+
+  & > .modal-header {
+    color: @heading-text-color;
+    background-color: @heading-bg-color;
+    border-color: @heading-border;
+
+    + .modal-collapse > .modal-body {
+      border-top-color: @border;
+    }
+    .badge {
+      color: @heading-bg-color;
+      background-color: @heading-text-color;
+    }
+  }
+  & > .modal-footer {
+    color: @heading-text-color;
+    border-color: @heading-border;
+
+    + .modal-collapse > .modal-body {
+      border-bottom-color: @border;
+    }
+  }
+}
+
+
+// Contextual variations
+.modal-default {
+  .modal-variant(@modal-default-border; @modal-default-text; @modal-default-heading-bg; @modal-default-border);
+}
+.modal-primary {
+  .modal-variant(@modal-primary-border; @modal-primary-text; @modal-primary-heading-bg; @modal-primary-border);
+}
+.modal-success {
+  .modal-variant(@modal-success-border; @modal-success-text; @modal-success-heading-bg; @modal-success-border);
+}
+.modal-info {
+  .modal-variant(@modal-info-border; @modal-info-text; @modal-info-heading-bg; @modal-info-border);
+}
+.modal-warning {
+  .modal-variant(@modal-warning-border; @modal-warning-text; @modal-warning-heading-bg; @modal-warning-border);
+}
+.modal-danger {
+  .modal-variant(@modal-danger-border; @modal-danger-text; @modal-danger-heading-bg; @modal-danger-border);
+}

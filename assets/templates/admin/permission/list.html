@@ -1,7 +1,7 @@
 <section class="table-responsive">
   <h3>
     <%= data.title || title %>
-    <a href="#admin/user/create" class="btn btn-default pull-right">
+    <a href="#admin/permission/create" class="btn btn-default pull-right">
       <span class="glyphicon glyphicon-plus"></span>
       New
     </a>
@@ -19,20 +19,12 @@
     <table class="table table-striped">
       <thead>
         <tr>
-          <th class="online-status"></th>
           <th class="hidden-xs hidden-sm">ID</th>
-          <th data-attrib="lastName" class="name sortable sorting asc">
+          <th data-attrib="name" class="name sortable sorting asc">
             Name
             <span class="glyphicon glyphicon-chevron-up"></span>
             <span class="glyphicon glyphicon-chevron-down"></span>
           </th>
-          <th data-attrib="email" class="email sortable hidden-xs">
-            Email
-            <span class="glyphicon glyphicon-chevron-up"></span>
-            <span class="glyphicon glyphicon-chevron-down"></span>
-          </th>
-          <th class="hidden-xs">Roles</th>
-          <th class="hidden-xs">Privilages</th>
           <th class="actions"></th>
         </tr>
       </thead>
@@ -46,8 +38,8 @@
       </tfoot>
     </table>
   </div>
-  <region data-id="AdminUserListPaginator"></region>
+  <region data-id="AdminPermissionListPaginator"></region>
 </section>
 
-<region data-id="AdminUserListEditModal"></region>
-<region data-id="AdminUserListDeleteModal"></region>
+<region data-id="AdminPermissionListEditModal"></region>
+<region data-id="AdminPermissionListDeleteModal"></region>

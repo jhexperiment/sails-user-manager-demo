@@ -1,0 +1,21 @@
+<!-- WidgetModal -->
+<div class="modal fade">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content modal-danger">
+      <header class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title"><%= obj.title ? obj.title : '' %></h4>
+      </header>
+      <div class="modal-body flex-row flex-wrap">
+        <%= obj.message ? obj.message : '' %>
+      </div>
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="delete btn btn-default btn-danger">
+          <span class="glyphicon glyphicon-exclamation-sign"></span>
+          Delete
+        </button>
+      </footer>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
